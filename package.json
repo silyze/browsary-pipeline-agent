@@ -1,6 +1,6 @@
 {
   "name": "@silyze/browsary-pipeline-agent",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Browsary Pipeline AI Agent",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -23,7 +23,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@silyze/browsary-ai-provider": "^1.0.0",
+    "@silyze/browsary-ai-provider": "^1.2.0",
     "@silyze/browser-provider": "^1.0.0",
     "@silyze/html-prompt-utils": "^1.0.0"
   }

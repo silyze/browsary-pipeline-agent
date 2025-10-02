@@ -6,11 +6,13 @@ import {
   AiProvider,
   AiEvaluator,
   AiEvaluationContext,
+  UsageMonitor,
 } from "@silyze/browsary-ai-provider";
 
 export type AgentConfig = {
   browser: BrowserProvider<unknown> | Browser | Promise<Browser>;
   viewport?: ViewportConfig;
+  usageMonitor?: UsageMonitor;
 };
 
 export class PipelineAgent extends AiEvaluator<Page> {
@@ -27,12 +29,15 @@ export class PipelineAgent extends AiEvaluator<Page> {
         context: Page,
         name: string,
         params: any
-      ) => Promise<unknown>
+      ) => Promise<unknown>,
+      usageMonitor?: UsageMonitor
     ) => AiProvider<Page, TConfig>,
     config: TConfig
   ): AiEvaluationContext<Page> {
-    const provider = new constuctor(config, (context, name, params) =>
-      this.#functionCall(context, name, params)
+    const provider = new constuctor(
+      config,
+      (context, name, params) => this.#functionCall(context, name, params),
+      this.#config.usageMonitor
     );
     return { provider, agent: this };
   }
